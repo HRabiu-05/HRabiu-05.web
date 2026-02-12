@@ -1,169 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HRABIU_05 | Personal Portfolio 😎</title>
-  <style>
-    /* Reset & base */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      background: #f5f7fa;
-      color: #1e293b;
-      scroll-behavior: smooth;
-    }
-    a { text-decoration: none; }
-    img { max-width: 100%; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HRABIU_05 | Cyber Portfolio 🌌</title>
+<style>
+/* Base & Dark Mode */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Courier New', Courier, monospace; background: #0a0a0f; color: #e0e0ff; overflow-x:hidden; scroll-behavior:smooth; position:relative; }
+a { text-decoration:none; color:#38bdf8; transition:0.3s; }
+a:hover { color:#7c3aed; }
 
-    /* Header */
-    header {
-      background: #0f172a;
-      color: #fff;
-      padding: 5rem 1rem 3rem;
-      text-align: center;
-    }
-    header h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
-    header p { font-size: 1.2rem; margin-bottom: 1.5rem; }
-    header a {
-      background: #38bdf8;
-      color: #0f172a;
-      padding: 0.8rem 1.5rem;
-      border-radius: 6px;
-      font-weight: 600;
-      margin: 0.3rem;
-      display: inline-block;
-      transition: background 0.3s;
-    }
-    header a:hover { background: #0ea5e9; color: #fff; }
+/* Canvas backgrounds */
+#bgCanvas, #sparkCanvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2; }
 
-    /* Sections */
-    section {
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-    h2 {
-      margin-bottom: 1.5rem;
-      color: #0f172a;
-      border-bottom: 3px solid #38bdf8;
-      display: inline-block;
-      padding-bottom: 0.3rem;
-    }
-    p { margin-bottom: 1rem; }
+/* Header & Glitch */
+header { text-align:center; padding:6rem 1rem 4rem; position:relative; overflow:hidden; }
+header h1 { font-size:3rem; letter-spacing:2px; color:#38bdf8; text-shadow:0 0 5px #38bdf8,0 0 15px #7c3aed,0 0 30px #7c3aed; animation:flicker 2s infinite, glitch 3s infinite; position:relative; }
+header h1 span { border-right:2px solid #7c3aed; animation:blink 0.8s steps(1) infinite; }
+header p { margin-top:1rem; font-size:1.2rem; color:#b0b0ff; }
+#typing { color:#7c3aed; font-weight:bold; }
 
-    /* Grid cards */
-    .skills, .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: #fff;
-      padding: 1.8rem;
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    }
-    .card h3 { margin-bottom: 0.5rem; color: #0f172a; }
-    .card a { color: #0284c7; font-weight: 600; }
-    .card a:hover { text-decoration: underline; }
+/* Navigation */
+nav a { display:inline-block; margin:0.5rem; background:#7c3aed; color:#0a0a0f; padding:0.7rem 1.5rem; border-radius:6px; font-weight:bold; text-transform:uppercase; box-shadow:0 0 10px #7c3aed,0 0 20px #38bdf8; transition:0.3s, transform 0.3s;}
+nav a:hover { transform:scale(1.1); box-shadow:0 0 20px #7c3aed,0 0 40px #38bdf8; }
 
-    /* Footer */
-    footer {
-      background: #0f172a;
-      color: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-    }
-    footer a { color: #38bdf8; margin: 0 0.5rem; transition: color 0.3s; }
-    footer a:hover { color: #0ea5e9; }
+/* Sections & Cards */
+section { max-width:1000px; margin:4rem auto; padding:0 1.5rem; opacity:0; transform:translateY(30px); transition:all 0.8s ease; }
+section.visible { opacity:1; transform:translateY(0); }
+h2 { margin-bottom:1.5rem; color:#38bdf8; border-bottom:2px solid #7c3aed; display:inline-block; padding-bottom:0.3rem; }
 
-    /* Responsive tweaks */
-    @media(max-width: 600px){
-      header h1 { font-size: 2rem; }
-      header p { font-size: 1rem; }
-      .card { padding: 1.2rem; }
-    }
-  </style>
+.skills, .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
+.card { background:#0a0a0f; border:1px solid #38bdf8; padding:2rem; border-radius:12px; box-shadow:0 0 10px #38bdf8,0 0 20px #7c3aed; transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s, background 0.4s; cursor:pointer; position:relative; overflow:hidden; }
+.card:hover { transform:translateY(-10px) scale(1.05); border-color:#7c3aed; box-shadow:0 0 20px #38bdf8,0 0 40px #7c3aed; background:linear-gradient(135deg,#7c3aed,#38bdf8,#7c3aed); background-size:400% 400%; animation:glow 4s ease infinite; }
+.card span.tooltip { visibility:hidden; opacity:0; position:absolute; top:110%; left:50%; transform:translateX(-50%); background:rgba(60,60,80,0.9); color:#fff; padding:0.5rem; border-radius:5px; font-size:0.8rem; transition:opacity 0.3s; }
+.card:hover span.tooltip { visibility:visible; opacity:1; }
+
+@keyframes glow { 0%{background-position:0 0;}50%{background-position:400% 0;}100%{background-position:0 0;} }
+
+.card h3 { margin-bottom:0.7rem; color:#38bdf8; }
+.card a { color:#7c3aed; font-weight:bold; }
+.card a:hover { text-decoration:underline; }
+
+/* Footer */
+footer { background:#0a0a0f; color:#b0b0ff; text-align:center; padding:2rem 1rem; margin-top:4rem; border-top:1px solid #38bdf8; }
+footer a { color:#38bdf8; margin:0 0.5rem; }
+footer a:hover { color:#7c3aed; }
+
+/* Chat Box */
+#chat-box { position:fixed; bottom:20px; right:20px; width:320px; max-height:400px; background:#0a0a0f; border:2px solid #38bdf8; border-radius:12px; display:flex; flex-direction:column; overflow:hidden; z-index:10; cursor:grab; }
+#chat-header { background:#7c3aed; color:#0a0a0f; font-weight:bold; padding:0.7rem; text-align:center; cursor:pointer; user-select:none; }
+#chat-messages { flex:1; padding:0.7rem; overflow-y:auto; color:#b0b0ff; font-size:0.9rem; }
+#chat-input { display:flex; border-top:1px solid #38bdf8; }
+#chat-input input { flex:1; border:none; padding:0.7rem; background:#0a0a0f; color:#e0e0ff; }
+#chat-input button { border:none; background:#38bdf8; color:#0a0a0f; padding:0 1rem; cursor:pointer; }
+#chat-input button:hover { background:#7c3aed; }
+
+/* Animations */
+@keyframes fadeIn {0%{opacity:0;}100%{opacity:1;}}
+@keyframes blink {50%{border-color:transparent;}}
+@keyframes flicker {0%,19%,21%,23%,25%,54%,56%,100%{text-shadow:0 0 5px #38bdf8,0 0 15px #7c3aed,0 0 30px #7c3aed;}20%,24%,55%{text-shadow:0 0 2px #38bdf8,0 0 5px #7c3aed;}}
+@keyframes glitch {0%{text-shadow:2px 0 #7c3aed,-2px 0 #38bdf8;}20%{text-shadow:-2px 0 #7c3aed,2px 0 #38bdf8;}40%{text-shadow:2px 0 #38bdf8,-2px 0 #7c3aed;}60%{text-shadow:-2px 0 #38bdf8,2px 0 #7c3aed;}80%{text-shadow:2px 0 #7c3aed,-2px 0 #38bdf8;}100%{text-shadow:0 0 #38bdf8,0 0 #7c3aed;}}
+@media(max-width:600px){header h1{font-size:2rem;}header p{font-size:1rem;}.card{padding:1.5rem;}}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>HRABIU_05 | Social 😎</h1>
-    <p>Cybersecurity | OS Development | Aspiring AI Engineer | Problem Solver | Lifelong Learner</p>
-    <nav>
-      <a href="#projects">My Work 🧑🏾‍💻</a>
-      <a href="#skills">Skills 🛠️</a>
-      <a href="#education">Education 📚</a>
-      <a href="#contact">Contact 📡</a>
-    </nav>
-  </header>
+<canvas id="bgCanvas"></canvas>
+<canvas id="sparkCanvas"></canvas>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a motivated student 🪪 passionate about Cybersecurity 👽, OS Development 🧑🏾‍💻, Artificial Intelligence 🧠, Software Development 👨🏾‍💻, and building real-world 🌎 solutions 💡. I enjoy turning new technologies into practical projects 🤝🏾😇.
-    </p>
-  </section>
+<header>
+  <h1>HRABIU_05 <span>|</span> Web page 😎</h1>
+  <p id="typing"></p>
+  <nav>
+    <a href="#projects">Work 🧑🏾‍💻
+    <a href="#skills">Skills 🛠</a>
+    <a href="#education">Education 📚</a>
+    <a href="#contact">Contact 📡</a>
+  </nav>
+</header>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="card">
-        <h3>Programming</h3>
-        <p>C, C++, Shell, Go, Rust, Python, Java, JavaScript, HTML, CSS</p>
-      </div>
-      <div class="card">
-        <h3>Tools & Frameworks</h3>
-        <p>NumPy, Pandas, Git, GitHub, Linux, GCC, Clang, GDB, QEMU, Bochs, Make, CMake, ELF</p>
-      </div>
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am a motivated student 🪪 passionate about Cybersecurity 👽, OS Development 🧑🏾‍💻 🧠, Software Dev 👨🏾‍💻 and building real-world 🌎 solutions 💡. I enjoy turning new tech into practical projects 🤝🏾.</p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="card" data-spark>
+      <h3>Programming</h3>
+      <p>C, C++, Shell, Go, Rust, Python, Java, JS, HTML, CSS</p>
+      <span class="tooltip">Core programming languages for OS, AI, and software development.</span>
     </div>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Computer Breakdown</h3>
-        <p>A 14-day breakdown of computer operation and structure, explained in detail without ChatGPT links.</p>
-        <a href="https://github.com/Hrabiu05/BREAKDOWN" target="_blank">View Project</a>
-      </div>
-      <div class="card">
-        <h3>Personal Website</h3>
-        <p>A hands-on personal website project built in minutes with ChatGPT guidance.</p>
-        <a href="https://github.com/Hrabiu05/hrabiu05.github.io" target="_blank">View Project</a>
-      </div>
+    <div class="card" data-spark>
+      <h3>Tools & Frameworks</h3>
+      <p>NumPy, Pandas, Git, GitHub, Linux, GCC, Clang, GDB, QEMU, Bochs, Make, CMake, ELF</p>
+      <span class="tooltip">Essential tools for development, debugging, and system programming.</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <p>
-      <strong>M.T.I University, Egypt</strong><br />
-      Computer Science – Year Two
-    </p>
-  </section>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="card" data-spark>
+      <h3>Computer Breakdown</h3>
+      <p>A 14-day breakdown of computer operation and structure, explained in detail without ChatGPT links.</p>
+      <span class="tooltip">Educational project explaining computer internals step by step.</span>
+      <a href="https://github.com/Hrabiu05/BREAKDOWN" target="_blank">View Project</a>
+    </div>
+    <div class="card" data-spark>
+      <h3>Personal Website</h3>
+      <p>A hands-on personal website project built in minutes with ChatGPT guidance.</p>
+      <span class="tooltip">Demonstrates web dev skills and portfolio presentation.</span>
+      <a href="https://github.com/Hrabiu05/hrabiu05.github.io" target="_blank">View Project</a>
+    </div>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:hrabiu05_social@outlook.com">hrabiu05_social@outlook.com</a></p>
-    <p>
-      <a href="https://github.com/Hrabiu05" target="_blank">GitHub 🕸️</a> |
-      <a href="https://wa.me/2347064403556" target="_blank">WhatsApp 💬</a> |
-      <a href="https://www.snapchat.com/add/hrabiu05_social" target="_blank">Snapchat 🔥</a>
-    </p>
-  </section>
+<section id="education">
+  <h2>Education</h2>
+  <p><strong>M.T.I University, Egypt</strong><br>Computer Science – Year Two</p>
+</section>
 
-  <footer>
-    <p>© 2026 HRABIU_05 🌚</p>
-  </footer>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:hrabiu05_social@outlook.com">hrabiu05_social@outlook.com</a></p>
+  <p>
+    <a href="https://github.com/Hrabiu05" target="_blank">GitHub 🕸</a> |
+    <a href="https://wa.me/2347064403556" target="_blank">WhatsApp 💬</a> |
+    <a href="https://www.snapchat.com/add/hrabiu05_social" target="_blank">Snapchat 🔥</a>
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 HRABIU_05 🌌</p>
+</footer>
+
+<!-- Chat Box -->
+<div id="chat-box">
+  <div id="chat-header">Chat 💬</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input">
+    <input type="text" id="chat-text" placeholder="Ask a question...">
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<script>
+// Scroll reveal
+const sections=document.querySelectorAll('section');
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:0.1});
+sections.forEach(section=>observer.observe(section));
+
+// Typing animation
+const skillsText="Cybersecurity | OS Dev | AI | Software Development | Lifelong Learner";
+let i=0;
+function typeSkill(){ if(i<skillsText.length){document.getElementById('typing').innerHTML+=skillsText.charAt(i); i++; setTimeout(typeSkill,80);} }
+typeSkill();
+
+// Matrix background
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let width=canvas.width=window.innerWidth;
+let height=canvas.height=window.innerHeight;
+const letters="01HRABIU05_SOCIAL🌌";
+const fontSize=16;
+const columns=Math.floor(width/fontSize);
+const drops=Array(columns).fill(1);
+function drawMatrix(){
+  ctx.fillStyle="rgba(10,10,15,0.15)";
+  ctx.fillRect(0,0,width,height);
+  ctx.fillStyle="#38bdf8";
+  ctx.font=fontSize+"px monospace";
+  for(let i=0;i<drops.length;i++){
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>height&&Math.random()>0.975)drops[i]=0;
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix,50);
+window.addEventListener('resize',()=>{width=canvas.width=window.innerWidth;height=canvas.height=window.innerHeight;});
+
+// Spark effect
+const sparkCanvas=document.getElementById('sparkCanvas');
+const sCtx=sparkCanvas.getContext('2d');
+sparkCanvas.width=window.innerWidth;
+sparkCanvas.height=window.innerHeight;
+let sparks=[];
+document.querySelectorAll('[data-spark]').forEach(card=>{
+  card.addEventListener('mousemove', e=>{ sparks.push({x:e.clientX,y:e.clientY,life:50}); });
+});
+function drawSparks(){
+  sCtx.clearRect(0,0,sparkCanvas.width,sparkCanvas.height);
+  sparks.forEach((s,i)=>{ sCtx.fillStyle="rgba(124,58,237,0.7)"; sCtx.beginPath(); sCtx.arc(s.x,s.y,2,0,Math.PI*2); sCtx.fill(); s.life--; if(s.life<=0) sparks.splice(i,1); });
+  requestAnimationFrame(drawSparks);
+}
+drawSparks();
+
+// Chat Box Drag & Collapse
+const chatBox=document.getElementById('chat-box');
+const chatHeader=document.getElementById('chat-header');
+let offsetX, offsetY, isDragging=false;
+
+chatHeader.addEventListener('mousedown', e=>{ isDragging=true; offsetX=e.clientX-chatBox.offsetLeft; offsetY=e.clientY-chatBox.offsetTop; chatBox.style.cursor='grabbing'; });
+document.addEventListener('mousemove', e=>{ if(isDragging){chatBox.style.left=e.clientX-offsetX+'px'; chatBox.style.top=e.clientY-offsetY+'px'; }});
+document.addEventListener('mouseup', e=>{ isDragging=false; chatBox.style.cursor='grab'; });
+
+chatHeader.addEventListener('dblclick', ()=>{ chatBox.classList.toggle('collapsed'); if(chatBox.classList.contains('collapsed')){ chatBox.style.height='40px'; } else { chatBox.style.height='400px'; } });
+
+// Chat functionality: multiple users simulation
+const chatMessages=document.getElementById('chat-messages');
+const chatText=document.getElementById('chat-text');
+const chatSend=document.getElementById('chat-send');
+
+const users=["Mentor","AI","Student"];
+function simulateResponse(user,text){
+  const p=document.createElement('p');
+  p.textContent=`${user}: ${text}`;
+  p.style.color=user==="AI"?"#7c3aed":(user==="Mentor"?"#38bdf8":"#b0b0ff");
+  chatMessages.appendChild(p);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+chatSend.addEventListener('click',()=>{ 
+  const msg=chatText.value.trim();
+  if(msg){ 
+    simulateResponse("You",msg);
+    chatText.value='';
+    // Simulate educational Q&A responses
+    setTimeout(()=>simulateResponse("AI","That's a great question! Here's a detailed explanation about that topic."),500);
+    setTimeout(()=>simulateResponse("Mentor","Remember: always validate inputs and think critically."),1200);
+    setTimeout(()=>simulateResponse("Student","Thanks! I learned something new 😎"),2000);
+  }
+});
+chatText.addEventListener('keypress', e=>{ if(e.key==='Enter') chatSend.click(); });
+</script>
 
 </body>
 </html>
