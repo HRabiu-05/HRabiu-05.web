@@ -2,81 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name=" HRABIU_05 ✌🏾" content="width=device-width, initial-scale=1.0" />
-  <title> Personal Portfolio 😎 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRABIU_05 | Personal Portfolio 😎</title>
   <style>
+    /* Reset & base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       background: #f5f7fa;
-      color: #333;
+      color: #1e293b;
+      scroll-behavior: smooth;
     }
+    a { text-decoration: none; }
+    img { max-width: 100%; }
+
+    /* Header */
     header {
       background: #0f172a;
       color: #fff;
-      padding: 4rem 1rem;
+      padding: 5rem 1rem 3rem;
       text-align: center;
     }
-    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+    header h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+    header p { font-size: 1.2rem; margin-bottom: 1.5rem; }
     header a {
       background: #38bdf8;
       color: #0f172a;
-      padding: 0.7rem 1.2rem;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      margin: 0.3rem;
+      display: inline-block;
+      transition: background 0.3s;
     }
+    header a:hover { background: #0ea5e9; color: #fff; }
+
+    /* Sections */
     section {
       max-width: 1000px;
-      margin: auto;
-      padding: 3rem 1.5rem;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
     }
     h2 {
       margin-bottom: 1.5rem;
       color: #0f172a;
-      border-bottom: 2px solid #38bdf8;
+      border-bottom: 3px solid #38bdf8;
       display: inline-block;
       padding-bottom: 0.3rem;
     }
+    p { margin-bottom: 1rem; }
+
+    /* Grid cards */
     .skills, .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      margin-top: 1.5rem;
     }
     .card {
       background: #fff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      padding: 1.8rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card h3 { margin-bottom: 0.5rem; }
-    .card a { color: #0284c7; text-decoration: none; font-weight: bold; }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+    .card h3 { margin-bottom: 0.5rem; color: #0f172a; }
+    .card a { color: #0284c7; font-weight: 600; }
+    .card a:hover { text-decoration: underline; }
+
+    /* Footer */
     footer {
       background: #0f172a;
       color: #fff;
       text-align: center;
       padding: 2rem 1rem;
+      margin-top: 3rem;
     }
-    footer a { color: #38bdf8; margin: 0 0.5rem; text-decoration: none; }
+    footer a { color: #38bdf8; margin: 0 0.5rem; transition: color 0.3s; }
+    footer a:hover { color: #0ea5e9; }
+
+    /* Responsive tweaks */
+    @media(max-width: 600px){
+      header h1 { font-size: 2rem; }
+      header p { font-size: 1rem; }
+      .card { padding: 1.2rem; }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1> HRABIU_05__SOCIAL 😎</h1>
-    <p> Cybersecuritist | Skilled OS Developer | Aspiring AI Engineer | Problem Solver | Lifelong Learner </p>
-    <p> <a href="#projects"> View My Work 🧑🏾‍💻 </a> | <a href="#skills"> View My skills 🛠️ </a> | <a href="#education"> View My education 📚 </a> | <a href="#contact"> View My contact 📡 </a> </p>
+    <h1>HRABIU_05 | Social 😎</h1>
+    <p>Cybersecurity | OS Development | Aspiring AI Engineer | Problem Solver | Lifelong Learner</p>
+    <nav>
+      <a href="#projects">My Work 🧑🏾‍💻</a>
+      <a href="#skills">Skills 🛠️</a>
+      <a href="#education">Education 📚</a>
+      <a href="#contact">Contact 📡</a>
+    </nav>
   </header>
-
-
 
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I am a motivated student 🪪 passionate about Cybersecuritist 👽, OS Development  🧑🏾‍💻, Artificial Intelligence 🧠, Software Development 👨🏾‍💻 and Building Real-World 🌎 Solutions 💡. I enjoy learning new Technologies and Turning into Practical Projects 🤝🏾😇.
+      I am a motivated student 🪪 passionate about Cybersecurity 👽, OS Development 🧑🏾‍💻, Artificial Intelligence 🧠, Software Development 👨🏾‍💻, and building real-world 🌎 solutions 💡. I enjoy turning new technologies into practical projects 🤝🏾😇.
     </p>
   </section>
 
@@ -85,11 +118,11 @@
     <div class="skills">
       <div class="card">
         <h3>Programming</h3>
-        <p> C, C++, Shell, GO, Rust, Python, Java, JavaScript, HTML, CSS</p>
+        <p>C, C++, Shell, Go, Rust, Python, Java, JavaScript, HTML, CSS</p>
       </div>
       <div class="card">
-        <h3>Tools</h3>
-        <p> NumPy, Pandas, Git, GitHub, Linux, GCC, Clang, GDB, QEMU, Bochs, Make, CMake, Git, ELF </p>
+        <h3>Tools & Frameworks</h3>
+        <p>NumPy, Pandas, Git, GitHub, Linux, GCC, Clang, GDB, QEMU, Bochs, Make, CMake, ELF</p>
       </div>
     </div>
   </section>
@@ -98,38 +131,38 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <h3>Project One</h3>
-        <p> This is a 14 day's breakdown of what a complete really is and how it operates in daily structure without CHATGPT links to each part.</p>
-        <a href="https://github.com/Hrabiu05/BREAKDOWN" target="_blank"> Computer Breakdown </a>
+        <h3>Computer Breakdown</h3>
+        <p>A 14-day breakdown of computer operation and structure, explained in detail without ChatGPT links.</p>
+        <a href="https://github.com/Hrabiu05/BREAKDOWN" target="_blank">View Project</a>
       </div>
       <div class="card">
-        <h3>Project Two</h3>
-        <p> this is a friendly parsonal hands on work website project created in minutes using CHATGPT.</p>
-        <a href="https://github.com/Hrabiu05/hrabiu05.github.io" target="_blank"> Parsonal Website </a>
+        <h3>Personal Website</h3>
+        <p>A hands-on personal website project built in minutes with ChatGPT guidance.</p>
+        <a href="https://github.com/Hrabiu05/hrabiu05.github.io" target="_blank">View Project</a>
       </div>
     </div>
   </section>
 
   <section id="education">
-    <h2> Education: </h2>
+    <h2>Education</h2>
     <p>
-      <strong> M.T.I University Egypt </strong><br />
+      <strong>M.T.I University, Egypt</strong><br />
       Computer Science – Year Two
     </p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: hrabiu05_social@outlook.com</p>
+    <p>Email: <a href="mailto:hrabiu05_social@outlook.com">hrabiu05_social@outlook.com</a></p>
     <p>
-      <a href="https://github.com/Hrabiu05" target="_blank"> GitHub 🕸️ </a> |  
-      <a href="https://wa.me/2347064403556" target="_blank"> What's App 💬 </a> | 
-     <a href="https://www.snapchat.com/add/hrabiu05_social" target="_blank"> Snapchat 🔥 </a>
+      <a href="https://github.com/Hrabiu05" target="_blank">GitHub 🕸️</a> |
+      <a href="https://wa.me/2347064403556" target="_blank">WhatsApp 💬</a> |
+      <a href="https://www.snapchat.com/add/hrabiu05_social" target="_blank">Snapchat 🔥</a>
     </p>
   </section>
 
   <footer>
-    <p>© 2026 HRABIU_05 🌚... </p>
+    <p>© 2026 HRABIU_05 🌚</p>
   </footer>
 
 </body>
